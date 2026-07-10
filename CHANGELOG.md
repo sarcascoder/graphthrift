@@ -17,4 +17,4 @@ All notable changes to this project are documented here. The format is based on
 - **React + TypeScript dashboard** — dark mode, before/after cost/latency/quality, savings projection, per-stage breakdown, run history.
 - **Ops** — Docker + docker-compose (API + dashboard + Postgres), Makefile one-command startup, GitHub Actions CI (lint, tests, frontend build, docker build), `.env` config.
 
-[0.1.0]: https://github.com/anupam/graphthrift/releases/tag/v0.1.0
+[0.1.0]: https://github.com/sarcascoder/graphthrift/releases/tag/v0.1.0

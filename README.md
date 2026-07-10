@@ -6,10 +6,14 @@
 
 *Cut cost — proven safe. Built Graphiti-first.*
 
-[![CI](https://github.com/anupam/graphthrift/actions/workflows/ci.yml/badge.svg)](https://github.com/anupam/graphthrift/actions/workflows/ci.yml)
+[![CI](https://github.com/sarcascoder/graphthrift/actions/workflows/ci.yml/badge.svg)](https://github.com/sarcascoder/graphthrift/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 ![Tests](https://img.shields.io/badge/tests-23%20passing-brightgreen)
+
+### ▶︎ [**Try the live demo →  graphthrift.vercel.app**](https://graphthrift.vercel.app)
+
+*Run a real baseline-vs-optimized comparison in your browser — no signup, no keys.*
 
 </div>
 
@@ -80,7 +84,7 @@ export GRAPHTHRIFT_BACKEND=openai     # real cost numbers (set GRAPHTHRIFT_OPENA
 
 ## Dashboard
 
-`make up` (or `cd apps/web && npm run dev`) serves a React + TypeScript dashboard (dark mode by default) at `http://localhost:5173`:
+**Live:** [graphthrift.vercel.app](https://graphthrift.vercel.app) — or `make up` (or `cd apps/web && npm run dev`) to serve the React + TypeScript dashboard (dark mode by default) at `http://localhost:5173`:
 
 - **Gate banner** — big green *SAFE — apply* or red *UNSAFE — flagged*, with the reasons and F1 deltas.
 - **Metric cards** — cost −%, calls −%, latency −%, and projected **$/month saved** at your volume.

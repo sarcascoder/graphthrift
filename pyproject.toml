@@ -40,8 +40,8 @@ dev = [
 graphthrift = "graphthrift.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/anupam/graphthrift"
-Issues = "https://github.com/anupam/graphthrift/issues"
+Homepage = "https://github.com/sarcascoder/graphthrift"
+Issues = "https://github.com/sarcascoder/graphthrift/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["graphthrift"]

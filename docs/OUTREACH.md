@@ -1,6 +1,6 @@
 # Outreach kit — Zep (Daniel Chalef)
 
-> Drafts for engineering a conversation, not spamming. Fill `<REPO_URL>` after publishing.
+> Drafts for engineering a conversation, not spamming. Fill https://github.com/sarcascoder/graphthrift after publishing.
 > Rules honored: specific, honest, no exaggeration. Every claim maps to something in the repo or Zep's own words. The demo numbers are from a **deterministic simulation** — say so.
 
 ---
@@ -17,7 +17,7 @@ So I built **GraphThrift**: an open-source cost/latency optimizer + eval harness
 
 On a bundled 8-episode agent-memory demo (deterministic sim backend, runs offline): **−47% cost, −40% calls, −24% latency, F1 unchanged → gate PASS**. Flip to routing extraction to a nano model and it's −97% cost but triple-F1 drops 0.93→0.75 → **gate FAILS and flags it**. That contrast is the whole thesis.
 
-Repo (Apache-2.0, `make up` to run): `<REPO_URL>`. It's genuinely useful, not a toy — I'd love your read on whether the gate approach matches how you think about safe optimization, and whether the batched `resolve_edge` path lines up with the real pipeline.
+Repo (Apache-2.0, `make up` to run): https://github.com/sarcascoder/graphthrift. It's genuinely useful, not a toy — I'd love your read on whether the gate approach matches how you think about safe optimization, and whether the batched `resolve_edge` path lines up with the real pipeline.
 
 — Anupam
 [GitHub] · [portfolio]
@@ -26,19 +26,19 @@ Repo (Apache-2.0, `make up` to run): `<REPO_URL>`. It's genuinely useful, not a 
 
 ## 2. LinkedIn DM (≤300 chars)
 
-Hi Daniel — I built GraphThrift, an OSS cost/latency optimizer + gold-F1 eval gate for Graphiti's add_episode pipeline (the per-edge fan-out from issue #1193). One-line `LLMClient` wrap; ~47% cost cut with quality gated. Repo: `<REPO_URL>`. Would value your take.
+Hi Daniel — I built GraphThrift, an OSS cost/latency optimizer + gold-F1 eval gate for Graphiti's add_episode pipeline (the per-edge fan-out from issue #1193). One-line `LLMClient` wrap; ~47% cost cut with quality gated. Repo: https://github.com/sarcascoder/graphthrift. Would value your take.
 
 ---
 
 ## 3. Twitter/X DM
 
-Hey @danielchalef — "Scaled Zep 30x" nerd-sniped me. Built GraphThrift: OSS optimizer + eval-gate for Graphiti's add_episode. Batches the per-edge resolve/timestamp fan-out, prefilters restated facts, and gates every optimization on entity/triple F1 vs a gold graph (the metric the repo lacks). One-line wrap of your LLMClient. `<REPO_URL>` — curious if the gate matches how you think about safe cost cuts.
+Hey @danielchalef — "Scaled Zep 30x" nerd-sniped me. Built GraphThrift: OSS optimizer + eval-gate for Graphiti's add_episode. Batches the per-edge resolve/timestamp fan-out, prefilters restated facts, and gates every optimization on entity/triple F1 vs a gold graph (the metric the repo lacks). One-line wrap of your LLMClient. https://github.com/sarcascoder/graphthrift — curious if the gate matches how you think about safe cost cuts.
 
 ---
 
 ## 4. GitHub — where to surface it (natural, not spammy)
 
-- Comment on **issue #1193** with a concrete, humble note: "Ran into the same fan-out cost; built an OSS profiler + eval-gated optimizer that batches `resolve_edge`/`extract_timestamps` and caches restated facts — repo here if useful: `<REPO_URL>`. Happy to open a PR for the batched-resolve path if that's a direction you'd take."
+- Comment on **issue #1193** with a concrete, humble note: "Ran into the same fan-out cost; built an OSS profiler + eval-gated optimizer that batches `resolve_edge`/`extract_timestamps` and caches restated facts — repo here if useful: https://github.com/sarcascoder/graphthrift. Happy to open a PR for the batched-resolve path if that's a direction you'd take."
 - Optionally open a **small, focused PR** (not a mega-PR): e.g. an opt-in batched edge-resolution path, or expose per-stage cost/latency metering hooks. Keep it reviewable.
 
 ---

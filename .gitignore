@@ -33,3 +33,5 @@ apps/web/.vite/
 *.swp
 .condaenv/
 .claude/settings.local.json
+.vercel
+.env*

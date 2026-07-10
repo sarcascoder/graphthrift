@@ -15,7 +15,8 @@
   "routes": [
     { "src": "/v1/(.*)", "dest": "/api/index.py" },
     { "src": "/(healthz|readyz|metrics|docs|redoc|openapi.json)", "dest": "/api/index.py" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/assets/(.*)", "dest": "/apps/web/assets/$1" },
+    { "src": "/", "dest": "/apps/web/index.html" },
+    { "src": "/(.*)", "dest": "/apps/web/index.html" }
   ]
 }
