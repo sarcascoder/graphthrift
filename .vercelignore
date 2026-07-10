@@ -1,0 +1,11 @@
+.venv
+.condaenv
+apps/web/node_modules
+apps/web/dist
+.git
+__pycache__
+*.sqlite3
+graphthrift_data
+.pytest_cache
+.ruff_cache
+tests

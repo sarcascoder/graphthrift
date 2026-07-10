@@ -1,0 +1,8 @@
+# Runtime deps for the Vercel Python serverless API (api/index.py).
+# The local `graphthrift` package is bundled via vercel.json includeFiles.
+fastapi>=0.111
+pydantic>=2.7
+pydantic-settings>=2.3
+sqlalchemy>=2.0
+structlog>=24.1
+httpx>=0.27

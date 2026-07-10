@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": { "includeFiles": "graphthrift/**" }
+    },
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/v1/(.*)", "dest": "/api/index.py" },
+    { "src": "/(healthz|readyz|metrics|docs|redoc|openapi.json)", "dest": "/api/index.py" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
