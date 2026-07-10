@@ -43,10 +43,18 @@ export function Header({
                 connecting…
               </Chip>
             ) : backend ? (
-              <Chip tone="accent">
-                <Server className="h-3 w-3" />
-                {backend}
-              </Chip>
+              <span
+                title={
+                  backend === 'fake'
+                    ? 'Live demo runs on a deterministic simulator (no API keys). The optimizers & eval gate are real code; validated separately on real models + Neo4j.'
+                    : `Backend: ${backend}`
+                }
+              >
+                <Chip tone={backend === 'fake' ? 'neutral' : 'accent'}>
+                  <Server className="h-3 w-3" />
+                  {backend === 'fake' ? 'simulated demo' : backend}
+                </Chip>
+              </span>
             ) : (
               <Chip tone="bad">
                 <Server className="h-3 w-3" />
@@ -56,7 +64,7 @@ export function Header({
           </div>
 
           <a
-            href="https://github.com"
+            href="https://github.com/sarcascoder/graphthrift"
             target="_blank"
             rel="noreferrer"
             className="grid h-9 w-9 place-items-center rounded-xl border border-zinc-200 bg-white text-zinc-600 transition hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300 dark:hover:bg-zinc-800"

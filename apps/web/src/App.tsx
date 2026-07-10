@@ -124,6 +124,25 @@ export default function App() {
         backendLoading={configLoading}
       />
 
+      {config?.backend === 'fake' && (
+        <div className="border-b border-amber-500/20 bg-amber-500/[0.07] text-amber-800 dark:text-amber-200/90">
+          <div className="mx-auto max-w-7xl px-4 py-2 text-xs sm:px-6">
+            <span className="font-medium">This live demo runs on a deterministic simulator</span>{' '}
+            — no API keys, instant, so anyone can try it. The optimizers and eval gate are the real
+            code. Validated separately on real models (OpenAI: −64.9% cost; local Qwen2.5 on Apple
+            M-series via Ollama) and a real Graphiti + Neo4j pipeline —{' '}
+            <a
+              href="https://github.com/sarcascoder/graphthrift/blob/main/docs/REAL_MODEL_RUN.md"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-2 hover:text-amber-600 dark:hover:text-amber-100"
+            >
+              see the real-model results →
+            </a>
+          </div>
+        </div>
+      )}
+
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
           {/* Main column */}
