@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.git/
+.github/
+apps/web/node_modules/
+apps/web/dist/
+graphthrift_data/
+*.sqlite3
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+docs/
+tests/
+.env
+.env.local

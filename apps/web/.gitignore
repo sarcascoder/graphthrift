@@ -1,0 +1,22 @@
+node_modules
+dist
+dist-ssr
+.condaenv
+*.local
+.env
+.env.local
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# TypeScript build artifacts
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# GraphThrift local state
+*.sqlite3
+*.db
+graphthrift_data/
+.env
+.env.local
+
+# Node / frontend
+node_modules/
+apps/web/dist/
+apps/web/.vite/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+.condaenv/
+.claude/settings.local.json

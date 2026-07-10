@@ -1,0 +1,95 @@
+@import url('https://rsms.me/inter/inter.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 antialiased;
+    @apply dark:bg-zinc-950 dark:text-zinc-100;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    min-height: 100vh;
+  }
+
+  /* Ambient gradient wash behind the app in dark mode */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 15% -10%, rgba(16, 185, 129, 0.08), transparent 60%),
+      radial-gradient(50rem 40rem at 100% 0%, rgba(59, 130, 246, 0.06), transparent 55%);
+  }
+
+  ::selection {
+    @apply bg-brand-500/30;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-zinc-200 bg-white/80 shadow-card backdrop-blur-sm;
+    @apply dark:border-zinc-800 dark:bg-zinc-900/70;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-4 py-2.5
+      text-sm font-medium transition-all duration-150 focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-brand-500/60 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-500 active:bg-brand-700
+      shadow-[0_6px_20px_-8px_rgba(16,185,129,0.7)];
+  }
+
+  .btn-ghost {
+    @apply border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100
+      dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-200 dark:hover:bg-zinc-800;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900
+      shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30
+      dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-100 dark:placeholder-zinc-500;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  @apply relative overflow-hidden rounded-lg bg-zinc-200/70 dark:bg-zinc-800/70;
+}
+.skeleton::after {
+  content: '';
+  @apply absolute inset-0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

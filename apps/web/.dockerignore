@@ -1,0 +1,10 @@
+node_modules
+dist
+.condaenv
+Dockerfile
+.dockerignore
+README.md
+.env
+.env.local
+*.log
+.DS_Store

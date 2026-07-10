@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: graphthrift
+      POSTGRES_PASSWORD: graphthrift
+      POSTGRES_DB: graphthrift
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U graphthrift"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      GRAPHTHRIFT_BACKEND: ${GRAPHTHRIFT_BACKEND:-fake}
+      GRAPHTHRIFT_DATABASE_URL: postgresql+psycopg://graphthrift:graphthrift@db:5432/graphthrift
+      GRAPHTHRIFT_LOG_JSON: "true"
+      GRAPHTHRIFT_OPENAI_API_KEY: ${GRAPHTHRIFT_OPENAI_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
