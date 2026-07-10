@@ -55,6 +55,38 @@ caught it — the "proven safe" mechanism working on real inference.
    metering; optimizers genuinely reduce calls (−45%) and tokens (−87%); the eval
    computes real F1; the gate correctly passes safe configs and fails unsafe ones.
 
+## Real dollar cost (OpenAI)
+
+Local models are free, so the Ollama run above shows token reduction, not dollars.
+This run uses **real OpenAI models** to produce genuine cost figures — deliberately
+frugal: `gpt-4o-mini` (extraction) + `gpt-4.1-nano` (dedup/summaries), 5 episodes,
+baseline vs safe only. **Total actual spend: $0.0033.**
+
+| Metric | Baseline | Optimized | Δ |
+|---|---|---|---|
+| LLM calls | 44 | 25 | **−43.2%** |
+| Prompt tokens | 12,526 | 2,085 | **−83.4%** |
+| Cost (gpt-4o-mini/nano) | $0.00245 | $0.00086 | **−64.9%** |
+| Entity F1 | 0.88 | 0.88 | 0.000 (held) |
+| Triple F1 | 0.296 | 0.296 | 0.000 (held) |
+| — | eliminated: 19 | cache hits: 7 | **Gate: PASS ✅** |
+
+**Real cost cut with identical extraction quality** — the gate passes.
+
+### Projected to frontier pricing (from the *real measured* token counts)
+
+These reprice the actual measured tokens at published frontier rates — honest
+extrapolation, not additional spend:
+
+| Model tier | Baseline | Optimized | Reduction | Monthly saving @ 1M episodes |
+|---|---|---|---|---|
+| gpt-4o + gpt-4o-mini | $0.0197 | $0.0104 | **−47.2%** | **~$1,861/mo** |
+| gpt-5.5 + gpt-4.1-nano | $0.0338 | $0.0174 | **−48.6%** | **~$3,282/mo** |
+
+(The gpt-4o-mini *actual* reduction of −64.9% is higher than the frontier projection
+because on the cheap tier the small-model calls are proportionally cheaper and prompt
+compression dominates. The frontier −47–49% is the conservative, defensible figure.)
+
 ## Real Graphiti + Neo4j integration (the `wrap()` drop-in)
 
 The demo pipeline is a *reproduction* of Graphiti's call graph. This is the real

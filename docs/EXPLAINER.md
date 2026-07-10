@@ -133,7 +133,7 @@ See `docs/REAL_MODEL_RUN.md` for the full numbers and caveats.
 | Reduces real calls & tokens on live inference | ✅ Proven (Ollama) |
 | Gate catches real quality regressions | ✅ Proven (Ollama aggressive run) |
 | `wrap()` works with real Graphiti + Neo4j | ✅ Proven (end-to-end run) |
-| **Real dollar-cost figures** | ⬜ **Not yet** — needs the OpenAI backend + a key. Local models are free, so cost-% on Ollama is $0; token reduction is the proxy. |
+| **Real dollar-cost figures** | ✅ Proven (OpenAI `gpt-4o-mini`+`nano`, $0.0033 spend): −64.9% cost, F1 held, gate PASS; frontier projection −47–49% |
 | Absolute triple-F1 on the demo (~0.24 on Ollama) | ⚠️ Low because the demo's gold uses canonical predicates (`WORKS_AT`) while raw qwen emits free-form ones — an artifact of the hand-authored demo gold, not a tool defect. *Relative* behavior (safe holds, aggressive degrades) is what's validated. |
 
 ---
@@ -155,8 +155,9 @@ See `docs/REAL_MODEL_RUN.md` for the full numbers and caveats.
 
 ## 7. Disadvantages & limitations (stated plainly)
 
-- **No real $ numbers yet** — validated on free local models and a real graph DB, but
-  the headline dollar savings need an OpenAI (or paid-endpoint) run.
+- **Real $ validated only at small scale** — a real OpenAI run (5 episodes, $0.0033)
+  showed −64.9% cost with quality held; frontier figures are a token-accurate
+  projection, not a large-scale production measurement.
 - **The demo's gold graph is hand-authored** for the simulator, so absolute F1 against
   a raw local model is low; it demonstrates *relative* behavior, not absolute accuracy.
 - **Batched edge-resolution is an approximation** of Graphiti's per-edge logic. It

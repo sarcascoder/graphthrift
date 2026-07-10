@@ -59,6 +59,8 @@ graphthrift demo --scenario aggressive  # ❌ gate fail — flagged unsafe
 
 > These numbers are from the **deterministic simulator** (so the demo runs offline, key-free). The mechanism was also **validated on real local models** (`qwen2.5:3b`/`0.5b` + `nomic-embed` via Ollama): safe config cut **−44.6% calls / −86.6% prompt tokens** with entity-F1 held (0.81→0.89, gate PASS); aggressive routing dropped F1 (entity −0.12, triple −0.17) and the gate **failed it**.
 >
+> And on **real OpenAI models** (`gpt-4o-mini` + `gpt-4.1-nano`, total spend $0.0033): safe config cut **−64.9% cost / −83.4% prompt tokens** with F1 unchanged (gate PASS) — projecting to **~47–49% ($1.9k–3.3k/mo at 1M episodes)** at frontier `gpt-4o`/`gpt-5.5` pricing.
+>
 > And the **`wrap()` drop-in was verified against real `graphiti-core` + Neo4j** — an actual `add_episode()` built and persisted a graph in Neo4j while GraphThrift metered every LLM call per stage (`ExtractedEntities`/`ExtractedEdges`/`SummarizedEntities`). Full runs + honest caveats: [`docs/REAL_MODEL_RUN.md`](docs/REAL_MODEL_RUN.md).
 
 ## Quickstart
