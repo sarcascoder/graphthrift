@@ -55,11 +55,44 @@ caught it — the "proven safe" mechanism working on real inference.
    metering; optimizers genuinely reduce calls (−45%) and tokens (−87%); the eval
    computes real F1; the gate correctly passes safe configs and fails unsafe ones.
 
+## Real Graphiti + Neo4j integration (the `wrap()` drop-in)
+
+The demo pipeline is a *reproduction* of Graphiti's call graph. This is the real
+thing: `graphthrift.wrap()` around an actual `graphiti-core` `LLMClient`, driving a
+real `Graphiti.add_episode()` against a real **Neo4j** database (LLM/embedder via
+Ollama). See `examples/graphiti_quickstart.py`.
+
+**Setup:** `graphiti-core` (pip), Neo4j 5.26 in Docker (via Colima) on
+`bolt://localhost:7687`, LLM = `qwen2.5:3b`/`0.5b` + `nomic-embed-text` through
+Ollama's OpenAI-compatible endpoint.
+
+**Result — verified working:**
+
+- `graphthrift.wrap(base_llm)` returns an object that **`isinstance` of Graphiti's `LLMClient`** ✓
+- `build_indices_and_constraints()` + two `add_episode()` calls ran clean
+- Graph **persisted in Neo4j**: 3 Entity nodes (Alice, Acme Corp, Atlas project — deduped from 2 episodes), 2 Episodic nodes, 1 `RELATES_TO` edge
+- **The wrapper metered the real pipeline per stage:** 5 LLM calls, 6,977 prompt tokens, 244 completion tokens, 8.4 s — `{ExtractedEntities: 2, ExtractedEdges: 2, SummarizedEntities: 1}`
+
+**Technical note:** Graphiti's base `generate_response` does not pass `prompt_name`
+down to `_generate_response` (it uses it only for its own tracing spans), so the
+wrapper labels stages by the `response_model` class name — which yields clean,
+meaningful stage names (`ExtractedEntities`, `ExtractedEdges`, `SummarizedEntities`).
+The override signature `(messages, response_model, max_tokens, model_size)` matched
+graphiti-core exactly; no changes to `wrap()` were needed.
+
 ## Reproduce
 
 ```bash
+# 1. local models
 ollama serve &
 ollama pull qwen2.5:3b && ollama pull qwen2.5:0.5b && ollama pull nomic-embed-text
+
+# 2. the simulator demo
 GRAPHTHRIFT_BACKEND=ollama graphthrift demo --scenario safe
 GRAPHTHRIFT_BACKEND=ollama graphthrift demo --scenario aggressive
+
+# 3. the real Graphiti + Neo4j integration
+docker run -d -p 7687:7687 -e NEO4J_AUTH=neo4j/testpassword123 -e 'NEO4J_PLUGINS=["apoc"]' neo4j:5.26
+pip install "graphthrift[graphiti]"
+python examples/graphiti_quickstart.py
 ```

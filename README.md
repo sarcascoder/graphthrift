@@ -57,7 +57,9 @@ graphthrift demo --scenario safe        # ✅ gate pass
 graphthrift demo --scenario aggressive  # ❌ gate fail — flagged unsafe
 ```
 
-> These numbers are from the **deterministic simulator** (so the demo runs offline, key-free). The mechanism was also **validated on real local models** (`qwen2.5:3b`/`0.5b` + `nomic-embed` via Ollama): safe config cut **−44.6% calls / −86.6% prompt tokens** with entity-F1 held (0.81→0.89, gate PASS); aggressive routing dropped F1 (entity −0.12, triple −0.17) and the gate **failed it**. Full run + honest caveats: [`docs/REAL_MODEL_RUN.md`](docs/REAL_MODEL_RUN.md).
+> These numbers are from the **deterministic simulator** (so the demo runs offline, key-free). The mechanism was also **validated on real local models** (`qwen2.5:3b`/`0.5b` + `nomic-embed` via Ollama): safe config cut **−44.6% calls / −86.6% prompt tokens** with entity-F1 held (0.81→0.89, gate PASS); aggressive routing dropped F1 (entity −0.12, triple −0.17) and the gate **failed it**.
+>
+> And the **`wrap()` drop-in was verified against real `graphiti-core` + Neo4j** — an actual `add_episode()` built and persisted a graph in Neo4j while GraphThrift metered every LLM call per stage (`ExtractedEntities`/`ExtractedEdges`/`SummarizedEntities`). Full runs + honest caveats: [`docs/REAL_MODEL_RUN.md`](docs/REAL_MODEL_RUN.md).
 
 ## Quickstart
 
