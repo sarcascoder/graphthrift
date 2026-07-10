@@ -20,8 +20,40 @@ from graphthrift.optimize.config import OptimizerConfig
 from graphthrift.optimize.dedup_prefilter import DedupPrefilter
 from graphthrift.optimize.edge_batcher import EdgeBatcher
 
-NODE_SCHEMA = {"type": "object", "properties": {"entities": {"type": "array"}}}
-EDGE_SCHEMA = {"type": "object", "properties": {"edges": {"type": "array"}}}
+# Detailed schemas so REAL backends (Ollama/OpenAI) return the exact shape the
+# pipeline consumes. The simulator ignores schemas, so this is a no-op for it.
+NODE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "entities": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {"name": {"type": "string"}, "type": {"type": "string"}},
+                "required": ["name"],
+            },
+        }
+    },
+    "required": ["entities"],
+}
+EDGE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "edges": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "subject": {"type": "string"},
+                    "predicate": {"type": "string"},
+                    "object": {"type": "string"},
+                },
+                "required": ["subject", "predicate", "object"],
+            },
+        }
+    },
+    "required": ["edges"],
+}
 SUMMARY_BATCH = 30  # Graphiti's MAX_NODES
 
 
