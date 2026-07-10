@@ -35,3 +35,8 @@ apps/web/.vite/
 .claude/settings.local.json
 .vercel
 .env*
+
+# large raw screen recordings
+*.mov
+/Screen Recording*
+demo_assets/*.mov

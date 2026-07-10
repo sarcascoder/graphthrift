@@ -52,6 +52,11 @@ Two configs against a baseline, on an 8-episode agent-memory corpus:
 
 The tempting 97% cut fails the gate. The safe 47% cut ships. *That's the point.*
 
+| Safe config → gate **passes** | Aggressive config → gate **fails** |
+|---|---|
+| ![Safe: −47% cost, F1 held, gate pass](docs/screenshots/safe_gate_pass.png) | ![Aggressive: −97% cost but F1 drops, gate fail](docs/screenshots/aggressive_gate_fail.png) |
+| −47% cost, quality unchanged | −97% cost, but F1 bars drop below the ε band → refused |
+
 ```bash
 graphthrift demo --scenario safe        # ✅ gate pass
 graphthrift demo --scenario aggressive  # ❌ gate fail — flagged unsafe
