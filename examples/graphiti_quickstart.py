@@ -12,7 +12,7 @@ Run:
 """
 import asyncio
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from graphiti_core import Graphiti
 from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
@@ -64,7 +64,7 @@ async def main():
                 name=f"ep{i+1}",
                 episode_body=body,
                 source_description="quickstart",
-                reference_time=datetime.now(timezone.utc),
+                reference_time=datetime.now(UTC),
                 source=EpisodeType.text,
             )
 
